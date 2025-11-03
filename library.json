@@ -1,0 +1,33 @@
+{
+    "name": "UniRobotLib",
+    "version": "0.0.1",
+    "description": "The Robot library for UniMakers robots",
+    "keywords": "robot, unimakers",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/UniMakers/UniRobotLib"
+    },
+    "authors": [
+        {
+            "name": "Aurélien Sézille (alias GZod01)",
+            "email": "gzod01@gzod01.fr",
+            "url": "https://gzod01.fr/contact"
+        },
+        {
+            "name": "Unimakers",
+            "email": "unimakers.amiens@gmail.com",
+            "url": "https://unimakers.fr",
+            "maintainer": true
+        }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/UniMakers/UniRobotLib",
+    "frameworks": "*",
+    "platforms": "*",
+    "dependencies": [
+        {
+            "name":"RPLidar (Unimakers Fork)",
+            "version": "https://github.com/UniMakers/RPLidar_Unimakers.git"
+        }
+    ]
+}
