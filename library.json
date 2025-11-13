@@ -26,7 +26,7 @@
     "platforms": "*",
     "dependencies": [
         {
-            "name":"RPLidar (Unimakers Fork)",
+            "name":"RPLidar",
             "version": "https://github.com/UniMakers/RPLidar_Unimakers.git"
         }
     ]
