@@ -1,3 +1,4 @@
+#pragma once
 class Coord{
     public:
     /// @brief coord X

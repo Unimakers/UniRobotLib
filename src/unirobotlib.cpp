@@ -1,5 +1,4 @@
 #include <unirobotlib.hpp>
-
 UniRobotLib::UniRobotLib(UniRobotLib_TypeDeCarte type_de_carte)
 {
     this->type = type_de_carte;

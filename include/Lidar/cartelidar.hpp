@@ -1,5 +1,7 @@
+#pragma once
 #include <RPLidar.h>
-#include <coord.hpp>
+#include <Common/coord.hpp>
+#include <unirobotlib.hpp>
 class CarteLidar {
     /// @brief the lidar point res structure
     struct LidarPoint{
@@ -10,6 +12,7 @@ class CarteLidar {
         /// @brief the quality of detection
         float quality=0;
     };
+    UniRobotLib* parent;
     public:
     /// @brief class object init
     CarteLidar();
