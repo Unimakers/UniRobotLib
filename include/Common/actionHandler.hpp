@@ -1,4 +1,5 @@
 #pragma once
+#include <Common/strategie.hpp>
 class ActionHandler{
     public:
     ActionHandler();
@@ -6,4 +7,4 @@ class ActionHandler{
     bool checkActionFinished();
     void nextAction();
     void loop();
-}
+};
