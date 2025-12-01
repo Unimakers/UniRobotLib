@@ -1,7 +1,12 @@
 #pragma once
+#include <Common/customDataType.hpp>
 #include <string>
 #include <map>
+#include <vector>
 
+
+
+/// @brief Robot Config
 class RobotConfig
 {
     // defaults config {
@@ -60,7 +65,37 @@ class RobotConfig
     // custom config {
 
     /// @brief the custom configs keys and values
-    std::map<std::string, std::string> customConfig;
+    std::map<std::string, CustomDataConfigType> customConfig;
 
     // }
+    
+    /// @brief RobotConfig initialisation
+    RobotConfig();
+    
+    // global setters and getters
+
+    /// @brief setter for \p name with string \p value 
+    /// @param name the name of the config element
+    /// @param value the value of the config element as string
+    void set(std::string name, std::string value);
+    /// @brief setter for \p name with int \p value 
+    /// @param name the name of the config element
+    /// @param value the value of the config element as int
+    void set(std::string name, int value);
+    /// @brief setter for \p name with double \p value 
+    /// @param name the name of the config element
+    /// @param value the value of the config element as double
+    void set(std::string name, double value);
+    /// @brief setter for \p name with \ref CustomDataConfigType \p value
+    /// @param name the name of the config element
+    /// @param value the value of the config element as \ref CustomDataConfigType
+    ///
+    /// C'est vraiment \ref CustomDataConfigType qu'il faut utiliser pour les types complexes
+    void set(std::string name, CustomDataConfigType value);
+    /// @brief getter for the config element \p name
+    /// @param name the name of the config element
+    /// @return the value as \p CustomDataConfigType
+    CustomDataConfigType get(std::string name);
+    
+
 };

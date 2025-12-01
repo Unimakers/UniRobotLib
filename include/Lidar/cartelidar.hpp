@@ -1,7 +1,7 @@
 #pragma once
 #include <RPLidar.h>
 #include <Common/coord.hpp>
-#include <unirobotlib.hpp>
+class UniRobotLib;
 class CarteLidar {
     /// @brief the lidar point res structure
     struct LidarPoint{

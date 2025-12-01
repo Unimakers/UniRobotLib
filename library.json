@@ -28,6 +28,14 @@
         {
             "name":"RPLidar",
             "version": "https://github.com/UniMakers/RPLidar_Unimakers.git"
+        },
+        {
+            "name":"SoftwareSerial",
+            "version": "plerup/EspSoftwareSerial@^8.2.0"
+        },
+        {
+            "name": "AccelStepper",
+            "version": "waspinator/AccelStepper@^1.64"
         }
     ]
 }
