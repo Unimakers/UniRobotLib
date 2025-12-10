@@ -6,6 +6,6 @@ class UniRobotLib{
     CarteLidar carteLidar;
     public:
     UniRobotLib(UniRobotLib_TypeDeCarte);
-    void setup(); // appelle le "setup" de la carte actuelle
+    void setup(RobotConfig config); // appelle le "setup" de la carte actuelle
     void loop(); // appelle le "loop" de la carte actuelle
 };

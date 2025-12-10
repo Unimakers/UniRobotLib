@@ -3,12 +3,14 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <Common/strategie.hpp>
 
 
 
 /// @brief Robot Config
 class RobotConfig
 {
+    public:
     // defaults config {
     // -- high level related config {
 
@@ -48,6 +50,14 @@ class RobotConfig
     int step_d;
     /// @brief EN
     int en;
+    /// @brief lidar rx
+    int lidar_rx;
+    /// @brief lidar tx
+    int lidar_tx;
+    /// @brief lidar pwm
+    int lidar_pwm;
+    /// @brief tirette pin
+    int tirette_pin;
 
     // -- ++ --}
     // -- ++ -- 
@@ -60,6 +70,11 @@ class RobotConfig
     /// @brief the default acceleration used for the motors
     int acceleration;
 
+    /// @brief robot strategy (only if main card of PAMI or ROBOT)
+    Strategie strategie;
+    /// @brief the robot initialisation strategy (only if main card of PAMI or ROBOT)
+    Strategie initStrategie;
+
     // -- }
     // }
     // custom config {
@@ -67,8 +82,9 @@ class RobotConfig
     /// @brief the custom configs keys and values
     std::map<std::string, CustomDataConfigType> customConfig;
 
+
     // }
-    
+
     /// @brief RobotConfig initialisation
     RobotConfig();
     
@@ -96,6 +112,4 @@ class RobotConfig
     /// @param name the name of the config element
     /// @return the value as \p CustomDataConfigType
     CustomDataConfigType get(std::string name);
-    
-
 };

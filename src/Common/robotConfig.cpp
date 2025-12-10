@@ -1,4 +1,5 @@
 #include <Common/robotConfig.hpp>
+#include <algorithm>
 void RobotConfig::set(std::string name, std::string value)
 {
     CustomDataConfigType c;
@@ -43,6 +44,7 @@ CustomDataConfigType RobotConfig::get(std::string name)
 {
     CustomDataConfigType c;
     c.type=TYPE::INT;
+    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
     if(name=="robotType")c.intValue=this->robotType;
     else if(name=="robotWidth")c.intValue=this->robotWidth;
     else if(name=="wheel_spacing")c.intValue=this->wheel_spacing;
@@ -55,6 +57,9 @@ CustomDataConfigType RobotConfig::get(std::string name)
     else if(name=="step_d")c.intValue=this->step_d;
     else if(name=="en")c.intValue=this->en;
     else if(name=="acceleration")c.intValue=this->acceleration;
+    else if (name=="lidar_rx")c.intValue=this->lidar_rx;
+    else if (name=="lidar_tx")c.intValue=this->lidar_tx;
+    else if (name=="lidar_pwm")c.intValue=this->lidar_pwm;
     else return this->customConfig[name];
     return c; // return the CustomDataConfigType
 }

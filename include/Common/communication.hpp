@@ -46,14 +46,14 @@ struct CommunicationData
     // rajouter d'autres trucs
 };
 CommunicationData commDataNone = {COMM_PERSISTENCE::ERASE_NEXT_LOOP, CommAction::NONE, ""};
-class CommunicationCartePrincpale
+class CommunicationCartePrincipale
 {
     std::map<int,std::vector<CommunicationData>> toSend;
     std::map<int,std::vector<CommunicationData>> receivedBuffer;
 
 public:
     /// @brief initialisation protocole communication
-    CommunicationCartePrincpale();
+    CommunicationCartePrincipale();
     /// @brief Permet d'envoyer les données à une carte
     /// @param idCarte Identifiant de la carte à laquelle envoyer les données
     /// @param  data Données à envoyer

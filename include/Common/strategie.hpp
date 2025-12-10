@@ -17,5 +17,14 @@ class Strategie{
         ActionType actType = (actionTypes.count(predefinedTypeName)!=0)?actionTypes[predefinedTypeName]:ActionType();
         return this->add(actType,args);
     }
+    int size(){
+        return this->stratlist.size();
+    }
+    StratAction get(int idx){
+        return this->stratlist[idx];
+    }
+    void call(int idx,ActionHandler* parent){
+        this->get(idx).action(parent);
+    }
     
 };

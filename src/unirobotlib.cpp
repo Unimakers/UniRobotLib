@@ -27,7 +27,7 @@ UniRobotLib::UniRobotLib(UniRobotLib_TypeDeCarte type_de_carte)
         break;
     }
 }
-void UniRobotLib::setup()
+void UniRobotLib::setup(RobotConfig config)
 {
     switch (this->type)
     {
@@ -38,7 +38,7 @@ void UniRobotLib::setup()
         // setup carteExtension Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_LIDAR:
-        this->carteLidar.setup();
+        this->carteLidar.setup(config);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
         // setup carteMoteur Lib

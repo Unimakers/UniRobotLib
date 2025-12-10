@@ -1,6 +1,6 @@
 #include <Common/communication.hpp>
 
-CommunicationCartePrincpale::CommunicationCartePrincpale()
+CommunicationCartePrincipale::CommunicationCartePrincipale()
 {
 }
 void envoiCommunicationData(int idCarte, CommunicationData data)
@@ -45,16 +45,15 @@ CommunicationData receiptCommunicationData(int idCarte)
     receivedData.argument = reception;
     return receivedData;
 }
-void CommunicationCartePrincpale::envoyer(int idCarte, CommunicationData data)
+void CommunicationCartePrincipale::envoyer(int idCarte, CommunicationData data)
 {
     envoiCommunicationData(idCarte, data);
 }
 
-void CommunicationCartePrincpale::loop()
+void CommunicationCartePrincipale::loop()
 {
     /*pour réception vers buffer et routeur pourra servir à l'envoi
     du buffer d'envoi si on voit que ça prend trop de temps de le faire dans "envoyer" directement*/
-    /*
     std::map<int,std::vector<CommunicationData>> toSend;
     for(auto const& sendPair : toSend)
     {
@@ -65,41 +64,40 @@ void CommunicationCartePrincpale::loop()
         }
     }
     toSend.clear();
-    */
-    // std::map<int,std::vector<CommunicationData>> newReceivedBuffer;
-    // for(auto const& receivePair : receivedBuffer)
-    // {
-    //     int idCarte = receivePair.first;
-    //     for(auto const& data : receivePair.second)
-    //     {
-    //         if(data.persistence == COMM_PERSISTENCE::ERASE_NEXT_LOOP)
-    //         {
-    //             //ne rien faire, on ne le garde pas
-    //         }
-    //         else if(data.persistence == COMM_PERSISTENCE::KEEP_UNTIL_NEXT_RECEIVE)
-    //         {
-    //             newReceivedBuffer[idCarte].push_back(data);
-    //         }
-    //     }
-    // }
-    // receivedBuffer = newReceivedBuffer;
-    // for(int idCarte = static_cast<int>(IdCarte::CARTE_MOTEUR); idCarte <= static_cast<int>(IdCarte::CARTE_EXTENSION_3); ++idCarte)
-    // {
-    //     CommunicationData receivedData = receiptCommunicationData(idCarte, CommunicationData());
-    //     if(receivedData.action != CommAction::NONE)
-    //     {
-    //         receivedBuffer[idCarte].push_back(receivedData);
-    //     }
-    // }
-    // routeur();
+    std::map<int,std::vector<CommunicationData>> newReceivedBuffer;
+    for(auto const& receivePair : receivedBuffer)
+    {
+        int idCarte = receivePair.first;
+        for(auto const& data : receivePair.second)
+        {
+            if(data.persistence == COMM_PERSISTENCE::ERASE_NEXT_LOOP)
+            {
+            //ne rien faire, on ne le garde pas
+            }
+            else if(data.persistence == COMM_PERSISTENCE::KEEP_UNTIL_NEXT_RECEIVE)
+            {
+                newReceivedBuffer[idCarte].push_back(data);
+            }
+        }
+    }
+    receivedBuffer = newReceivedBuffer;
+    for(int idCarte = static_cast<int>(IdCarte::CARTE_MOTEUR); idCarte <= static_cast<int>(IdCarte::CARTE_EXTENSION_3); ++idCarte)
+    {
+        CommunicationData receivedData = receiptCommunicationData(idCarte);
+        if(receivedData.action != CommAction::NONE)
+        {
+            receivedBuffer[idCarte].push_back(receivedData);
+        }
+    }
+    //routeur();
 }
 
-/* void CommunicationCartePrincpale::routeur()
+/* void CommunicationCartePrincipale::routeur()
 // {
 }*/
 
 
-CommunicationData CommunicationCartePrincpale::regarder(int idCarte)
+CommunicationData CommunicationCartePrincipale::regarder(int idCarte)
 {
     return receiptCommunicationData(idCarte);
 }

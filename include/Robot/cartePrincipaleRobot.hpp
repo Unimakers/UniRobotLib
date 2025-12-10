@@ -1,11 +1,15 @@
 #pragma once
-#include <unirobotlib.hpp>
+#include <Common/communication.hpp>
+#include <Common/robotConfig.hpp>
+#include <Common/actionHandler.hpp>
 
 class CartePrincipaleRobot{
-    UniRobotLib* parent;
+    RobotConfig config;
+    CommunicationCartePrincipale communication;
+    ActionHandler actionHandler;
     public:
     /// @brief init cartePrincipaleRobot
     CartePrincipaleRobot();
-    void setup();
+    void setup(RobotConfig config,Strategie strat);
     void loop();
 };
