@@ -18,20 +18,21 @@ enum struct IdCarte : int
 
 enum struct CommAction : int
 {
-    NONE = 0,                  // aucune action
-    LIDAR_DETECTION = 1,       // détection par le lidar
-    FORWARD = 2,               // avancer
-    BACKWARD = 3,              // reculer
-    TURN_LEFT = 4,             // tourner à gauche
-    TURN_RIGHT = 5,            // tourner à droite
-    TURN_TO_ANGLE = 6,         // tourner à un angle précis
-    MOVE_TO_POSITION = 7,      // aller à une position précise
-    CUSTOM_MOTOR_COMMAND = 8,  // commande moteur personnalisée
-    IHM_ACTIVATED = 9,        // action déclenchée par l'IHM
-    IHM_DEACTIVATED = 10,      // action désactivée par l'IHM
-    IHM_UPDATE = 11,           // mise à jour de l'IHM
+    NONE = 0,                   // aucune action
+    LIDAR_DETECTION = 1,        // détection par le lidar
+    FORWARD = 2,                // avancer
+    BACKWARD = 3,               // reculer
+    TURN_LEFT = 4,              // tourner à gauche
+    TURN_RIGHT = 5,             // tourner à droite
+    TURN_TO_ANGLE = 6,          // tourner à un angle précis
+    MOVE_TO_POSITION = 7,       // aller à une position précise
+    CUSTOM_MOTOR_COMMAND = 8,   // commande moteur personnalisée
+    IHM_ACTIVATED = 9,          // action déclenchée par l'IHM
+    IHM_DEACTIVATED = 10,       // action désactivée par l'IHM
+    IHM_UPDATE = 11,            // mise à jour de l'IHM
     LIDAR_POSITION_UPDATE = 12, // mise à jour de la position du lidar
-    //ROUTE_DATA = 13            // routage de données entre cartes
+    INIT_ROBOT = 13,            // activation des moteurs du lidar etc. activé au début de l'initialisation, mais pas au tout début non plus pour éviter de consommer avec les moteurs
+    //ROUTE_DATA = 13           // routage de données entre cartes
 };
 enum struct COMM_PERSISTENCE : int
 {
