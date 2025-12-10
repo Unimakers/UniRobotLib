@@ -47,7 +47,8 @@ CommunicationData receiptCommunicationData(int idCarte)
 }
 void CommunicationCartePrincipale::envoyer(int idCarte, CommunicationData data)
 {
-    envoiCommunicationData(idCarte, data);
+    this->toSend[idCarte].push_back(data);
+    return;
 }
 
 void CommunicationCartePrincipale::loop()
@@ -97,9 +98,13 @@ void CommunicationCartePrincipale::loop()
 }*/
 
 
+
 CommunicationData CommunicationCartePrincipale::regarder(int idCarte)
 {
-    return receiptCommunicationData(idCarte);
+    return this->receivedBuffer[idCarte].back();
+}
+std::vector<CommunicationData> CommunicationCartePrincipale::regarder_tout(int idCarte){
+    return this->receivedBuffer[idCarte];
 }
 
 CommunicationCarteExtension::CommunicationCarteExtension()

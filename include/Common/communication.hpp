@@ -68,6 +68,10 @@ public:
     /// @param idCarte Identifiant de la carte dont on veut regarder les données
     /// @return Données sous forme \ref CommunicationData
     CommunicationData regarder(int idCarte);
+    /// @brief Permet de regarder toutes les données reçues les données envoyées par la carte X
+    /// @param idCarte Identifiant de la carte dont on veut regarder les données
+    /// @return Vecteur de données sous forme std::vector< \ref CommunicationData >
+    std::vector<CommunicationData> regarder_tout(int idCarte);
 };
 class CommunicationCarteExtension
 {
