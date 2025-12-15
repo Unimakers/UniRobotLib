@@ -20,10 +20,12 @@ class CarteMoteur{
     int vitesse_mT;
     bool started = false;
     bool paused = false;
+    struct CurAction {int left, right;};
+    CurAction currentaction;
     public:
     CarteMoteur();
     void setup(RobotConfig config);
-    void run();
+    void run(bool * lidar);
     void loop();
     void setCoord(Coord coord);
     bool reachedTarget();
