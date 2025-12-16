@@ -10,6 +10,6 @@ class CartePrincipaleRobot{
     public:
     /// @brief init cartePrincipaleRobot
     CartePrincipaleRobot();
-    void setup(RobotConfig config,Strategie strat);
+    void setup(RobotConfig config);
     void loop();
 };

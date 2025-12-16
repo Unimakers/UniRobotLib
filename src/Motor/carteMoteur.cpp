@@ -7,6 +7,63 @@ void CarteMoteur::setup(RobotConfig config)
     this->left = AccelStepper(AccelStepper::DRIVER, this->config.step_g, this->config.dir_g);
     this->right = AccelStepper(AccelStepper::DRIVER, this->config.step_d, this->config.dir_d);
 }
+DataArgumentType cutArguments(std::string argument)
+{
+    DataArgumentType t;
+    std::string arg = argument;
+    int noName = 0;
+    while (arg.find("&") != std::string::npos)
+    {
+        std::string curarg = arg.substr(0, arg.find("&"));
+        if (curarg.find("=") == std::string::npos)
+        {
+            t.customArguments[std::to_string(noName)] = curarg;
+            noName++;
+        }
+        else
+        {
+            std::string name = curarg.substr(0, curarg.find("="));
+            std::string val = curarg.substr(curarg.find("=") + 1);
+            if (name == "C")
+            {
+                std::string vv = val;
+                if (vv.find(",") != std::string::npos)
+                {
+                    t.target.x = std::stod(vv.substr(0, vv.find(",")));
+                    vv = vv.substr(vv.find(",") + 1);
+                    if (vv.find(",") != std::string::npos)
+                    {
+                        t.target.y = std::stod(vv.substr(0, vv.find(",")));
+                        vv = vv.substr(vv.find(",") + 1);
+                        if (vv.find(",") != std::string::npos)
+                        {
+                            t.target.a = std::stod(vv.substr(0, vv.find(",")));
+                            vv = vv.substr(vv.find(",") + 1);
+                        }
+                    }
+                }
+            }
+            else if (name == "s")
+            {
+                t.speed = std::stoi(val);
+            }
+            else if (name == "d")
+            {
+                t.distance = std::stoi(val);
+            }
+            else if (name == "a")
+            {
+                t.angle = std::stoi(val);
+            }
+            else
+            {
+                t.customArguments[name] = val;
+            }
+        }
+        arg = arg.substr(arg.find("&") + 1);
+    }
+    return t;
+}
 void CarteMoteur::loop()
 {
     this->communication.loop();
@@ -16,6 +73,35 @@ void CarteMoteur::loop()
         if (ordre.action == CommAction::INIT_ROBOT)
             this->started = true;
         return;
+    }
+    DataArgumentType a = cutArguments(ordre.argument);
+    bool lidar = false;
+    switch (ordre.action)
+    {
+    case CommAction::FORWARD:
+        forward(a.distance,a.speed);
+        break;
+    case CommAction::BACKWARD:
+        backward(a.distance,a.speed);
+        break;
+    case CommAction::MOVE_TO_POSITION:
+        moveTo(a.target,a.speed);
+        break;
+    case CommAction::TURN_LEFT:
+        turn(-a.angle,a.speed);
+        break;
+    case CommAction::TURN_RIGHT:
+        turn(a.angle,a.speed);
+        break;
+    case CommAction::TURN_TO_ANGLE:
+        turnTo(a.angle,a.speed);
+        break;
+    case CommAction::LIDAR_DETECTION:
+        lidar = true;
+        break;
+    case CommAction::CUSTOM_MOTOR_COMMAND:
+        // custom(leftAction, rightAction);
+        break;
     }
 }
 void CarteMoteur::run(bool *lidar)
@@ -162,7 +248,8 @@ void CarteMoteur::stop()
     // delay(2000);
     this->paused = true;
 }
-void CarteMoteur::resume() {
+void CarteMoteur::resume()
+{
     if (!this->paused)
         return;
     this->paused = false;

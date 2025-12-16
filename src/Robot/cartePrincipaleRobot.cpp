@@ -2,7 +2,7 @@
 CartePrincipaleRobot::CartePrincipaleRobot()
 {
 }
-void CartePrincipaleRobot::setup(RobotConfig config,Strategie strat)
+void CartePrincipaleRobot::setup(RobotConfig config)
 {
     this->config = config;
     if(this->config.robotType==-2)return;

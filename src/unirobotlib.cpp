@@ -14,13 +14,13 @@ UniRobotLib::UniRobotLib(UniRobotLib_TypeDeCarte type_de_carte)
         this->carteLidar = CarteLidar();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        // init carteMoteur Lib
+        this->carteMoteur = CarteMoteur();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // init cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        // init cartePrincipaleRobot Lib
+        this->cartePrincipaleRobot = CartePrincipaleRobot();
         break;
     default:
         // error
@@ -41,13 +41,13 @@ void UniRobotLib::setup(RobotConfig config)
         this->carteLidar.setup(config);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        // setup carteMoteur Lib
+        this->carteMoteur.setup(config);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // setup cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        // setup cartePrincipaleRobot Lib
+        this->cartePrincipaleRobot.setup(config);
         break;
     default:
         // error
@@ -68,13 +68,13 @@ void UniRobotLib::loop()
         this->carteLidar.loop();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        // loop carteMoteur Lib
+        this->carteMoteur.loop();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // loop cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        // loop cartePrincipaleRobot Lib
+        this->cartePrincipaleRobot.loop();
         break;
     default:
         // error
