@@ -2,7 +2,8 @@
 #include <RPLidar.h>
 #include <Common/coord.hpp>
 #include <Common/robotConfig.hpp>
-#include <Common/communication.hpp>
+// #include <Common/communication.hpp>
+#include <Common/communication_simplified.hpp>
 class CarteLidar {
     /// @brief the lidar point res structure
     struct LidarPoint{
@@ -30,9 +31,10 @@ class CarteLidar {
         bool isObstacle;
     };
     Coord coordRobot;
-    CommunicationCarteExtension communication;
+    CommEsclave communication;
     RobotConfig robotConfig;
     RPLidar lidar;
+    bool hasObstacle = false;
     public:
     /// @brief class object init
     CarteLidar();

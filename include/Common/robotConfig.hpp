@@ -58,6 +58,22 @@ class RobotConfig
     int lidar_pwm;
     /// @brief tirette pin
     int tirette_pin;
+    /// @brief Rx de communication vers principal sur la carte moteur
+    int carteMoteurCommRX;
+    /// @brief Tx de communication vers principal sur la carte moteur
+    int carteMoteurCommTX;
+    /// @brief Rx de communication vers principal sur la carte lidar
+    int carteLidarCommRX;
+    /// @brief Tx de communication vers principal sur la carte lidar
+    int carteLidarCommTX;
+    /// @brief Rx de communication vers lidar sur la carte principale
+    int mainToLidarRX;
+    /// @brief Tx de communication vers lidar sur la carte principale
+    int mainToLidarTX;
+    /// @brief Rx de communication vers moteur sur la carte principale
+    int mainToMotorRX;
+    /// @brief Tx de communication vers moteur sur la carte principale
+    int mainToMotorTX;
 
     // -- ++ --}
     // -- ++ -- 

@@ -1,11 +1,12 @@
 #pragma once
 #include <Common/communication.hpp>
+#include <Common/communication_simplified.hpp>
 #include <Common/robotConfig.hpp>
 #include <Common/actionHandler.hpp>
 
 class CartePrincipaleRobot{
     RobotConfig config;
-    CommunicationCartePrincipale communication;
+    CommPrincipale communication;
     ActionHandler actionHandler;
     public:
     /// @brief init cartePrincipaleRobot

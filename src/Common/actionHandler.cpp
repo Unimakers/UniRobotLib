@@ -2,7 +2,7 @@
 ActionHandler::ActionHandler()
 {
 }
-void ActionHandler::setup(RobotConfig config,CommunicationCartePrincipale* communication)
+void ActionHandler::setup(RobotConfig config,CommPrincipale* communication)
 {
     this->config = config;
     this->strategie = config.strategie;

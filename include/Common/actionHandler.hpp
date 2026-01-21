@@ -1,5 +1,6 @@
 #pragma once
-#include <Common/communication.hpp>
+// #include <Common/communication.hpp>
+#include <Common/communication_simplified.hpp>
 #include <Common/robotConfig.hpp>
 /** 
  * @brief Code de fonctionnement des actions, c'est ce code qui va faire fonctionner les stratégies, 
@@ -30,12 +31,12 @@ class ActionHandler{
     STATE state = STATE::IDLE;
     CURRENT_STRAT curStrat = CURRENT_STRAT::INIT;
     RobotConfig config;
-    CommunicationCartePrincipale* communication=nullptr;
+    CommPrincipale* communication=nullptr;
     Strategie strategie,initStrategie;
     int currentActionIndex=0;
     public:
     ActionHandler();
-    void setup(RobotConfig config,CommunicationCartePrincipale* communication);
+    void setup(RobotConfig config,CommPrincipale* communication);
     bool checkActionFinished();
     void nextAction();
     void loop();

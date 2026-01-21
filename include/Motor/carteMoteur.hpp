@@ -1,12 +1,13 @@
 #pragma once
 #include <Common/robotConfig.hpp>
-#include <Common/communication.hpp>
+// #include <Common/communication.hpp>
+#include <Common/communication_simplified.hpp>
 #include <AccelStepper.h>
 
 class CarteMoteur{
     AccelStepper left,right;
     RobotConfig config;
-    CommunicationCarteExtension communication;
+    CommEsclave communication;
     Coord robotCoord;
     enum struct Etat_mvt
     {

@@ -1,8 +1,7 @@
 #include <Lidar/cartelidar.hpp>
 #include <unirobotlib.hpp>
-CarteLidar::CarteLidar()
-{
-}
+
+
 HardwareSerial serialLidar(0);
 void CarteLidar::setup(RobotConfig config)
 {
@@ -16,34 +15,27 @@ void CarteLidar::loop()
 {
     communication.loop();
     LidarPoint lp = this->detect();
-    CommunicationData receiptData;
-    receiptData = this->communication.regarder();
-    if(receiptData.action == CommAction::LIDAR_POSITION_UPDATE)
-    {
-        // parse data
-        std::string arg = receiptData.argument;
-        size_t pos1 = arg.find(",");
-        size_t pos2 = arg.find(",", pos1 + 1);
-        size_t pos3 = arg.find(",", pos2 + 1);
-        this->coordRobot.x = std::stof(arg.substr(0, pos1));
-        this->coordRobot.y = std::stof(arg.substr(pos1 + 1, pos2 - pos1 - 1));
-        this->coordRobot.a = std::stof(arg.substr(pos2 + 1, pos3 - pos2 - 1));
-    }
+    CommAction receivedAction = communication.getAction();
     if(lp.isPoint)
     {
-        Coord pointCoord = this->localizePoint(lp);
-        SendedPoint sp;
-        sp.x = pointCoord.x;
-        sp.y = pointCoord.y;
-        sp.a = pointCoord.a;
-        sp.quality = lp.quality;
-        sp.isObstacle = lp.obstacle;
-        CommunicationData data;
-        data.persistence = COMM_PERSISTENCE::ERASE_NEXT_LOOP;
-        data.action = CommAction::LIDAR_DETECTION;
-        data.argument = std::to_string(sp.x) + "," + std::to_string(sp.y) + "," + std::to_string(sp.a) + "," + std::to_string(sp.quality) + "," + std::to_string(sp.isObstacle);
-        this->communication.envoyer(data);
+        //POUR l'instant on ne fait pas d'envoi de position mais uniquement de l'envoi de 1 si obstacle, 0 si rien
+        // Coord pointCoord = this->localizePoint(lp);
+        // SendedPoint sp;
+        // sp.x = pointCoord.x;
+        // sp.y = pointCoord.y;
+        // sp.a = pointCoord.a;
+        // sp.quality = lp.quality;
+        // sp.isObstacle = lp.obstacle;
+        // CommunicationData data;
+        // data.persistence = COMM_PERSISTENCE::ERASE_NEXT_LOOP;
+        // data.action = CommAction::LIDAR_DETECTION;
+        // data.argument = std::to_string(sp.x) + "," + std::to_string(sp.y) + "," + std::to_string(sp.a) + "," + std::to_string(sp.quality) + "," + std::to_string(sp.isObstacle);
+        // this->communication.envoyer(data);
     }
+    if(lp.obstacle){
+        this->hasObstacle=true;
+    }
+    communication.sendState(this->hasObstacle);
 }
 CarteLidar::LidarPoint CarteLidar::detect()
 {

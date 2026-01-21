@@ -3,7 +3,7 @@ CarteMoteur::CarteMoteur() {}
 void CarteMoteur::setup(RobotConfig config)
 {
     this->config = config;
-    this->communication = CommunicationCarteExtension();
+    this->communication.setup(config.carteMoteurCommRX,config.carteMoteurCommTX);
     this->left = AccelStepper(AccelStepper::DRIVER, this->config.step_g, this->config.dir_g);
     this->right = AccelStepper(AccelStepper::DRIVER, this->config.step_d, this->config.dir_d);
 }
@@ -67,16 +67,17 @@ DataArgumentType cutArguments(std::string argument)
 void CarteMoteur::loop()
 {
     this->communication.loop();
-    CommunicationData ordre = this->communication.regarder();
+    CommAction ordre = this->communication.getAction();
+    std::string argument = this->communication.getArgs();
     if (!this->started)
     {
-        if (ordre.action == CommAction::INIT_ROBOT)
+        if (ordre == CommAction::INIT_ROBOT)
             this->started = true;
         return;
     }
-    DataArgumentType a = cutArguments(ordre.argument);
+    DataArgumentType a = cutArguments(argument);
     bool lidar = false;
-    switch (ordre.action)
+    switch (ordre)
     {
     case CommAction::FORWARD:
         forward(a.distance,a.speed);
