@@ -23,7 +23,7 @@ void ActionHandler::loop()
     Strategie theStrat = this->initStrategie;
     if(getState() == STATE::RUNNING){
         if(checkActionFinished())return setState(STATE::IDLE);
-
+        
     }
     else if(getState() == STATE::IDLE){
         if(this->currentActionIndex+1>=theStrat.size()){
