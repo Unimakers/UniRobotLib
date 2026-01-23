@@ -1,4 +1,5 @@
 #include <Common/communication_simplified.hpp>
+#include <SoftwareSerial.h>
 void CommPrincipale::setup(int RxCommLidar, int TxCommLidar, int RxCommMoteur, int TxCommMoteur)
 {
     this->lidarComm.begin(38400, SWSERIAL_8N1, RxCommLidar, TxCommLidar);

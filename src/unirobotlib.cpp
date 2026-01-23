@@ -11,16 +11,16 @@ UniRobotLib::UniRobotLib(UniRobotLib_TypeDeCarte type_de_carte)
         // init carteExtension Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_LIDAR:
-        this->carteLidar = CarteLidar();
+        this->carteLidar = new CarteLidar();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        this->carteMoteur = CarteMoteur();
+        this->carteMoteur = new CarteMoteur();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // init cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        this->cartePrincipaleRobot = CartePrincipaleRobot();
+        this->cartePrincipaleRobot = new CartePrincipaleRobot();
         break;
     default:
         // error
@@ -38,16 +38,16 @@ void UniRobotLib::setup(RobotConfig config)
         // setup carteExtension Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_LIDAR:
-        this->carteLidar.setup(config);
+        this->carteLidar->setup(config);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        this->carteMoteur.setup(config);
+        this->carteMoteur->setup(config);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // setup cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        this->cartePrincipaleRobot.setup(config);
+        this->cartePrincipaleRobot->setup(config);
         break;
     default:
         // error
@@ -65,16 +65,16 @@ void UniRobotLib::loop()
         // loop carteExtension Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_LIDAR:
-        this->carteLidar.loop();
+        this->carteLidar->loop();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
-        this->carteMoteur.loop();
+        this->carteMoteur->loop();
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_PAMI:
         // loop cartePrincipalePami Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_PRINCIPALE_ROBOT:
-        this->cartePrincipaleRobot.loop();
+        this->cartePrincipaleRobot->loop();
         break;
     default:
         // error

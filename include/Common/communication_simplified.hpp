@@ -39,7 +39,7 @@ class CommPrincipale
     bool lidarState;
     bool motorState;
     public:
-    CommPrincipale();
+    CommPrincipale(){};
     void setup(int RxCommLidar, int TxCommLidar, int RxCommMoteur, int TxCommMoteur);
     /// @brief  Get the lidar state
     /// @return 0 if nothing, 1 if lidar detected something
@@ -61,7 +61,7 @@ class CommEsclave{
     std::string receivedArguments="";
     bool stateToSend=false;
     public:
-    CommEsclave();
+    CommEsclave(){};
     void setup(int rxComm, int txComm);
     /// @brief Send state (detection if lidar, action finished if motor)
     /// @param value 0 or 1

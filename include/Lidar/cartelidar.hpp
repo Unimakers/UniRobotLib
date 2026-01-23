@@ -37,7 +37,7 @@ class CarteLidar {
     bool hasObstacle = false;
     public:
     /// @brief class object init
-    CarteLidar();
+    CarteLidar(){};
     /// @brief the lidar setup code
     void setup(RobotConfig config);
     /// @brief the lidar main loop

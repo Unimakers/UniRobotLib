@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ACTIONTYPE_H
+#define ACTIONTYPE_H
 class ActionHandler;
 //#include <Common/actionHandler.hpp>
 #include <map>
@@ -56,3 +58,4 @@ class ActionType{
 
 /// @brief predefined default actionTypes list
 std::map<std::string,ActionType> actionTypes = {};
+#endif
