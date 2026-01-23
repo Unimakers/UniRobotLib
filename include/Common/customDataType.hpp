@@ -27,7 +27,7 @@ struct CustomDataConfigType
     std::string customValue;
 };
 
-template <typename T, bool defaultSetLocked=true>
+template <typename T, bool defaultSetLocked=true, bool lockedLocked=false>
 class ValType
 {
 public:
@@ -51,7 +51,7 @@ public:
     operator T(){
         return getter();
     }
-    void setLocked(bool a){this->locked=a;};
+    void setLocked(bool a){if(!lockedLocked)this->locked=a;};
     void securSetValue(T value, bool ok){if(ok)setter(value);}
     T& GetRawData(){return m_value;}
     private:

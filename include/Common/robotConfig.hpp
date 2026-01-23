@@ -7,6 +7,7 @@
 
 #ifndef ROBOT_CONFIG_H
 #define ROBOT_CONFIG_H
+constexpr double PI_VAL = 3.14159;
 /// @brief Robot Config
 class RobotConfig
 {
@@ -32,9 +33,9 @@ class RobotConfig
     /// @brief the amount of step per rev without multiplier (used for the step_cm value)
     ValType<int> step_rev_no_multi;
     /// @brief the amount of step per rev, autoCalculated : step_rev_no_multi * step_multi
-    ValType<int> step_rev;
+    ValType<int,true,true> step_rev;
     /// @brief step per cm of the wheel, autoCalculated : step_rev / (2PI*(wheel_size/2))
-    ValType<int> step_cm;
+    ValType<int,true,true> step_cm;
 
     // -- ++ }
     // -- ++ pin hardware related config {
@@ -102,7 +103,7 @@ class RobotConfig
     // }
 
     /// @brief RobotConfig initialisation
-    RobotConfig();
+    RobotConfig(){};
     
     // global setters and getters
 
@@ -128,5 +129,42 @@ class RobotConfig
     /// @param name the name of the config element
     /// @return the value as \p CustomDataConfigType
     CustomDataConfigType get(std::string name);
+    void setLocked(bool locked){
+        this->acceleration.setLocked(locked);
+        this->carteLidarCommRX.setLocked(locked);
+        this->carteLidarCommTX.setLocked(locked);
+        this->carteLidarCommTX.setLocked(locked);
+        this->carteMoteurCommRX.setLocked(locked);
+        this->carteMoteurCommTX.setLocked(locked);
+        this->customConfig.setLocked(locked);
+        this->dir_d.setLocked(locked);
+        this->dir_g.setLocked(locked);
+        this->en.setLocked(locked);
+        this->initStrategie.setLocked(locked);
+        this->lidar_pwm.setLocked(locked);
+        this->lidar_rx.setLocked(locked);
+        this->lidar_tx.setLocked(locked);
+        this->mainToLidarRX.setLocked(locked);
+        this->mainToLidarTX.setLocked(locked);
+        this->mainToMotorRX.setLocked(locked);
+        this->mainToMotorTX.setLocked(locked);
+        this->robotType.setLocked(locked);
+        this->robotWidth.setLocked(locked);
+        this->step_cm.setLocked(locked); // autoCalculated, lockedLocked is defined to True so it will not be editable except with securSetValue
+        this->step_d.setLocked(locked);
+        this->step_g.setLocked(locked);
+        this->step_multi.setLocked(locked);
+        this->step_rev.setLocked(locked); // autoCalculated, lockedLocked is defined to True so it will not be editable except with securSetValue
+        this->step_rev_no_multi.setLocked(locked);
+        this->strategie.setLocked(locked);
+        this->tirette_pin.setLocked(locked);
+        this->wheel_size.setLocked(locked);
+        this->wheel_spacing.setLocked(locked);
+    };
+    void updateCalculs(){
+        // for all autoCalculated values
+        this->step_rev.securSetValue(this->step_rev_no_multi*this->step_multi,true);
+        this->step_cm.securSetValue(this->step_rev / (2*PI_VAL*(wheel_size/2)),true);
+    }
 };
 #endif

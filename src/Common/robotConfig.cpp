@@ -35,7 +35,7 @@ void RobotConfig::set(std::string name, CustomDataConfigType value)
     else if(name=="step_d")this->step_d=value.intValue;
     else if(name=="en")this->en=value.intValue;
     else if(name=="acceleration")this->acceleration=value.intValue;
-    else this->customConfig[name]=value;
+    else this->customConfig()[name]=value;
     // auto calculate values
     this->step_rev=this->step_rev_no_multi*this->step_multi;
     this->step_cm=this->step_rev/(3.14159*(this->wheel_size/2));
@@ -60,6 +60,6 @@ CustomDataConfigType RobotConfig::get(std::string name)
     else if (name=="lidar_rx")c.intValue=this->lidar_rx;
     else if (name=="lidar_tx")c.intValue=this->lidar_tx;
     else if (name=="lidar_pwm")c.intValue=this->lidar_pwm;
-    else return this->customConfig[name];
+    else return this->customConfig()[name];
     return c; // return the CustomDataConfigType
 }
