@@ -2,6 +2,7 @@
 #include <Common/strataction.hpp>
 #include <vector>
 #include <map>
+#include <Common/actionTypes_default.hpp>
 class Strategie{
     std::vector<StratAction> stratlist;
     public:
@@ -14,7 +15,7 @@ class Strategie{
         return this->add(strata);
     }
     Strategie* add(std::string predefinedTypeName, DataArgumentType args){
-        ActionType actType = (actionTypes.count(predefinedTypeName)!=0)?actionTypes[predefinedTypeName]:ActionType();
+        ActionType actType = ActionType();//(actionTypes.count(predefinedTypeName)!=0)?actionTypes[predefinedTypeName]:ActionType();
         return this->add(actType,args);
     }
     int size(){

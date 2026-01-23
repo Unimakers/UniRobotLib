@@ -18,9 +18,10 @@ enum struct CommAction : char
     LIDAR_DETECTION = 'S',        // pour indiquer à la carte moteur qu'il y a eu une detection de lidar
     NO_NEW_DATA = 'Z'             // permet d'avoir un return quand la reception n'est pas finie ou qu'il n'y a vraiment pas de donnée qui a encore été reçue (uniquement utile pour carte moteur ducoup)
 };
-char CANCEL_CURRENT = '$';
-char END_OF_COMM = '@';
-
+// char CANCEL_CURRENT = '$';
+#define CANCEL_CURRENT '$'
+// char END_OF_COMM = '@';
+#define END_OF_COMM '@'
 class CommPrincipale
 {
     /*the buffer of the action to Send to the motor, we write one byte per loop, 

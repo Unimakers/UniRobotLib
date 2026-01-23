@@ -55,7 +55,4 @@ class ActionType{
         this->actionFunc(parent,datas);
     }
 };
-
-/// @brief predefined default actionTypes list
-std::map<std::string,ActionType> actionTypes = {};
 #endif

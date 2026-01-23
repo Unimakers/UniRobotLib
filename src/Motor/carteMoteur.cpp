@@ -1,4 +1,5 @@
 #include <Motor/carteMoteur.hpp>
+#include <Common/robotConfig.hpp>
 CarteMoteur::CarteMoteur() {}
 void CarteMoteur::setup(RobotConfig config)
 {
