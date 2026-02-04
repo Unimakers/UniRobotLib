@@ -1,0 +1,23 @@
+on: 
+  push:
+    paths:
+      - **/*.cpp
+      - **/*.hpp
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Count Lines Of Code
+        run: echo "$(find . -name "*.cpp" -path "./lib/*" -or -name "*.hpp" -path "./lib/*" | xargs wc -l --total=only)" > linestats.txt
+      # other actions can be added
+      - name: Update Readme LineCount
+        run: sed -i 's/^LineCount:\(.*\)$/LineCount: '$(cat ./linestats.txt)'/' README.md
+      # other updates can be added
+      - name: Push modifications
+        run:|
+          git config --global user.email "12345+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git commit -am "Automated stats"
+          git push
