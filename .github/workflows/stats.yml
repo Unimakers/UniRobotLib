@@ -1,8 +1,8 @@
 on: 
   push:
     paths:
-      - **/*.cpp
-      - **/*.hpp
+      - '**/*.cpp'
+      - '**/*.hpp'
 jobs:
   stats:
     runs-on: ubuntu-latest
@@ -13,10 +13,10 @@ jobs:
         run: echo "$(find . -name "*.cpp" -path "./lib/*" -or -name "*.hpp" -path "./lib/*" | xargs wc -l --total=only)" > linestats.txt
       # other actions can be added
       - name: Update Readme LineCount
-        run: sed -i 's/^LineCount:\(.*\)$/LineCount: '$(cat ./linestats.txt)'/' README.md
+        run: "sed -i 's/^LineCount:\(.*\)$/LineCount: '$(cat ./linestats.txt)'/' README.md"
       # other updates can be added
       - name: Push modifications
-        run:|
+        run: |
           git config --global user.email "12345+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git commit -am "Automated stats"
