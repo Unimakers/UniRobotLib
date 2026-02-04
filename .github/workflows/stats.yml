@@ -1,8 +1,5 @@
 on: 
-  push:
-    paths:
-      - '**/*.cpp'
-      - '**/*.hpp'
+  push
 jobs:
   stats:
     runs-on: ubuntu-latest
