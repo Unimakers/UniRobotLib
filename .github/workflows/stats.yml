@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
       - name: Count Lines Of Code
-        run: echo "$(find . -name "*.cpp" -path "./lib/*" -or -name "*.hpp" -path "./lib/*" | xargs wc -l --total=only)" > linestats.txt
+        run: echo "$(find . -name "*.cpp" -or -name "*.hpp" | xargs wc -l --total=only)" > linestats.txt
       - name: Check Lines Of Code
         run: cat linestats.txt
       # other actions can be added
