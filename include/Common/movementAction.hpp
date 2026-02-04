@@ -4,4 +4,6 @@
 class MovementAction{
     RobotConfig config;
     CommPrincipale* communication;
+    public:
+    MovementAction();
 };
