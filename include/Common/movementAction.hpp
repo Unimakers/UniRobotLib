@@ -11,15 +11,15 @@ class MovementAction{
     /// @brief Direct Motors control if pami robot mode
     CarteMoteur* carteMoteur;
     public:
-    MovementAction();
+    MovementAction(RobotConfig conf, CommPrincipale* communication);
     /// @brief Forward relative
     /// @param distance the distance (in cm)
     /// @param speed the speed (in cm/s)
-    void forward(int distance, int speed);
+    void forward(double distance, int speed);
     /// @brief Backward relative
     /// @param distance the distance (in cm)
     /// @param speed the speed (in cm/s)
-    void backward(int distance, int speed){return forward(-distance,speed);}
+    void backward(double distance, int speed){return forward(-distance,speed);}
     /// @brief Turn relative
     /// @param angle the angle (in degrees)
     /// @param speed the speed (in cm/s)
@@ -32,4 +32,6 @@ class MovementAction{
     /// @param coord the position (x and y in cm and a in degrees)
     /// @param speed the speed (in cm/s)
     void moveTo(Coord coord, int speed);
+    void run();
+    bool getStatus();
 };

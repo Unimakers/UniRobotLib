@@ -50,7 +50,7 @@ DataArgumentType cutArguments(std::string argument)
             }
             else if (name == "d")
             {
-                t.distance = std::stoi(val);
+                t.distance = std::stod(val);
             }
             else if (name == "a")
             {
@@ -81,22 +81,22 @@ void CarteMoteur::loop()
     switch (ordre)
     {
     case CommAction::FORWARD:
-        forward(a.distance,a.speed);
+        this->forward(a.distance,a.speed);
         break;
     case CommAction::BACKWARD:
-        backward(a.distance,a.speed);
+        this->backward(a.distance,a.speed);
         break;
     case CommAction::MOVE_TO_POSITION:
-        moveTo(a.target,a.speed);
+        this->moveTo(a.target,a.speed);
         break;
     case CommAction::TURN_LEFT:
-        turn(-a.angle,a.speed);
+        this->turn(-a.angle,a.speed);
         break;
     case CommAction::TURN_RIGHT:
-        turn(a.angle,a.speed);
+        this->turn(a.angle,a.speed);
         break;
     case CommAction::TURN_TO_ANGLE:
-        turnTo(a.angle,a.speed);
+        this->turnTo(a.angle,a.speed);
         break;
     case CommAction::LIDAR_DETECTION:
         lidar = true;
@@ -105,6 +105,8 @@ void CarteMoteur::loop()
         // custom(leftAction, rightAction);
         break;
     }
+    this->run(&lidar);
+    this->communication.sendState(this->reachedTarget());
 }
 void CarteMoteur::run(bool *lidar)
 {

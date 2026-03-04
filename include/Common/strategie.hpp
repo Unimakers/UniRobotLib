@@ -15,7 +15,7 @@ class Strategie{
         return this->add(strata);
     }
     Strategie* add(std::string predefinedTypeName, DataArgumentType args){
-        ActionType actType = ActionType();//(actionTypes.count(predefinedTypeName)!=0)?actionTypes[predefinedTypeName]:ActionType();
+        ActionType actType = (actionTypes.count(predefinedTypeName)!=0)?actionTypes[predefinedTypeName]:ActionType();
         return this->add(actType,args);
     }
     int size(){
@@ -28,4 +28,23 @@ class Strategie{
         this->get(idx).action(parent);
     }
     
+    // default actions
+    Strategie* FORWARD(double distance, int speed){
+        return this->add("FORWARD",(DataArgumentType){.speed=speed,.distance=distance});
+    }
+    Strategie* BACKWARD(double distance, int speed){
+        return this->add("BACKWARD",(DataArgumentType){.speed=speed,.distance=distance});
+    }
+    Strategie* TURN(double angle, int speed){
+        return this->add("TURN",(DataArgumentType){.speed=speed,.angle=angle});
+    }
+    Strategie* TURN_TO(double angle, int speed){
+        return this->add("TURN_TO",(DataArgumentType){.speed=speed,.angle=angle});
+    }
+    Strategie* MOVE_TO(Coord coord, int speed){
+        return this->add("MOVE_TO",(DataArgumentType){.speed=speed,.target=coord});
+    }
+    Strategie* DELAY(int miliseconds){
+        return this->add("DELAY",(DataArgumentType){.time=miliseconds});
+    }
 };

@@ -8,13 +8,11 @@ void ActionHandler::setup(RobotConfig config,CommPrincipale* communication)
     this->strategie = config.strategie;
     this->initStrategie = config.initStrategie;
     this->communication=communication;
+    this->movementAction = new MovementAction(config,communication);
 }
 bool ActionHandler::checkActionFinished()
 {
     return true;
-}
-void ActionHandler::nextAction()
-{
 }
 void ActionHandler::loop()
 {
@@ -35,6 +33,8 @@ void ActionHandler::loop()
             return setState(STATE::FINISHED);
         }
         theStrat.call(this->currentActionIndex,this);
+        this->registerLoopAction(this->nullLoopActionFunc,"");
+        this->registerFinishedAction(this->nullFinishedActionFunc,"");
         this->currentActionIndex++;
         return setState(STATE::RUNNING);
     }else if (getState() == STATE::PAUSED){
