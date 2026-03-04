@@ -31,11 +31,11 @@
         },
         {
             "name":"SoftwareSerial",
-            "version": "plerup/EspSoftwareSerial@^8.2.0"
+            "version": "plerup/EspSoftwareSerial"
         },
         {
             "name": "AccelStepper",
-            "version": "waspinator/AccelStepper@^1.64"
+            "version": "waspinator/AccelStepper"
         }
     ]
 }

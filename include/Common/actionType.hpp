@@ -16,7 +16,7 @@ struct DataArgumentType{
     /// @brief distance common argument
     double distance;
     /// @brief angle common argument
-    int angle;
+    double angle;
     /// @brief time common argument
     int time;
     /// @brief tonality common argument
@@ -50,10 +50,6 @@ class ActionType{
     /// @brief call the function of the action
     /// @param parent the ActionHandler* parent class
     /// @param datas the arguments
-    void action(ActionHandler* parent, DataArgumentType datas){
-        if(this->compatibility==-2) return;
-        if(this->compatibility!=0 && parent->getConfigValue("robotType").intValue!=this->compatibility)return;
-        this->actionFunc(parent,datas);
-    }
+    void action(ActionHandler* parent, DataArgumentType datas);
 };
 #endif
