@@ -73,4 +73,5 @@ bool MovementAction::getStatus()
     {
         return this->communication->getMotorState();
     }
+    return false;
 }

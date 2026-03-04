@@ -1,5 +1,4 @@
 #pragma once
-// #include <Common/communication.hpp>
 #include <Common/communication_simplified.hpp>
 #include <Common/robotConfig.hpp>
 #include <Common/movementAction.hpp>
