@@ -123,6 +123,8 @@ void CarteMoteur::run(bool *lidar)
     }
     this->left.run();
     this->right.run();
+    if (millis() % 100 == 0)
+        Serial.println("helloworldhello");
 }
 
 void CarteMoteur::setCoord(Coord coord)
