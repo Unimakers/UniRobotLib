@@ -7,6 +7,8 @@ void CarteMoteur::setup(RobotConfig config)
     this->communication.setup(config.carteMoteurCommRX,config.carteMoteurCommTX);
     this->left = AccelStepper(AccelStepper::DRIVER, this->config.step_g, this->config.dir_g);
     this->right = AccelStepper(AccelStepper::DRIVER, this->config.step_d, this->config.dir_d);
+    pinMode(config.en, OUTPUT);
+    digitalWrite(config.en, LOW);
 }
 DataArgumentType cutArguments(std::string argument)
 {
