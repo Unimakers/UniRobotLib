@@ -11,5 +11,5 @@ class UniRobotLib{
     public:
     UniRobotLib(UniRobotLib_TypeDeCarte);
     void setup(RobotConfig config); // appelle le "setup" de la carte actuelle
-    void loop(); // appelle le "loop" de la carte actuelle
+    void loop(bool debug=false); // appelle le "loop" de la carte actuelle
 };

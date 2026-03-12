@@ -54,7 +54,7 @@ void UniRobotLib::setup(RobotConfig config)
         break;
     }
 }
-void UniRobotLib::loop()
+void UniRobotLib::loop(bool debug)
 {
     switch (this->type)
     {
@@ -65,7 +65,7 @@ void UniRobotLib::loop()
         // loop carteExtension Lib
         break;
     case UniRobotLib_TypeDeCarte::CARTE_LIDAR:
-        this->carteLidar->loop();
+        this->carteLidar->loop(debug);
         break;
     case UniRobotLib_TypeDeCarte::CARTE_MOTEUR:
         this->carteMoteur->loop();
