@@ -1,5 +1,4 @@
 #include <Lidar/cartelidar.hpp>
-#include <unirobotlib.hpp>
 
 
 HardwareSerial serialLidar(0);
@@ -8,8 +7,10 @@ void CarteLidar::setup(RobotConfig config)
     this->robotConfig = config;
     int rx = this->robotConfig.get("lidar_rx").intValue;
     int tx = this->robotConfig.get("lidar_tx").intValue;
-    this->lidar.begin(serialLidar, rx, tx);
+    pinMode(this->robotConfig.lidar_pwm, OUTPUT);
     analogWrite(this->robotConfig.get("lidar_pwm").intValue, 160);
+    this->lidar.begin(serialLidar, rx, tx);
+    this->lidar.startScan();
 }
 void CarteLidar::loop(bool debug)
 {
@@ -48,9 +49,9 @@ CarteLidar::LidarPoint CarteLidar::detect()
         RPLidarMeasurement m = lidar.getCurrentPoint();
         lp.isPoint = true;
         lp.angle = m.angle;
-        lp.distance = m.distance / 1000.0; // convert mm to m
+        lp.distance = (float)m.distance / 1000.0; // convert mm to m
         lp.quality = m.quality;
-        if(m.distance < 0.5) lp.obstacle = true;
+        if(m.distance < 0.4 && m.distance > 0.1) lp.obstacle = true;
     }
     else
     {
