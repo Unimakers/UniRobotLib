@@ -11,7 +11,7 @@ void CarteLidar::setup(RobotConfig config)
     this->lidar.begin(serialLidar, rx, tx);
     analogWrite(this->robotConfig.get("lidar_pwm").intValue, 160);
 }
-void CarteLidar::loop()
+void CarteLidar::loop(bool debug)
 {
     communication.loop();
     LidarPoint lp = this->detect();
@@ -31,6 +31,9 @@ void CarteLidar::loop()
         // data.action = CommAction::LIDAR_DETECTION;
         // data.argument = std::to_string(sp.x) + "," + std::to_string(sp.y) + "," + std::to_string(sp.a) + "," + std::to_string(sp.quality) + "," + std::to_string(sp.isObstacle);
         // this->communication.envoyer(data);
+        double xPoint = cos(lp.angle) * lp.distance;
+        double yPoint = sin(lp.angle) * lp.distance;
+        Serial.println(((std::string) ">point:" + std::to_string(xPoint) + ":" + std::to_string(yPoint) + "|xy").c_str());
     }
     if(lp.obstacle){
         this->hasObstacle=true;

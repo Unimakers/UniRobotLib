@@ -41,7 +41,7 @@ class CarteLidar {
     /// @brief the lidar setup code
     void setup(RobotConfig config);
     /// @brief the lidar main loop
-    void loop();
+    void loop(bool debug=false);
     /// @brief the lidar detect function
     /// @return the lidarPoint
     LidarPoint detect();
